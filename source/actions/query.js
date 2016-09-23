@@ -196,7 +196,7 @@ export const watchEvent = (firebase, dispatch, event, path, dest, onlyLastEvent 
 
   const runQuery = (q, e, p) => {
     if (e === 'once') {
-      q.once().then(snapshot => dispatch({ type: SET, path, data: snapshot.val()}))
+      q.once('value').then(snapshot => dispatch({ type: SET, path, data: snapshot.val()}))
     } else {
       q.on(e, snapshot => {
         let data = (e === 'child_removed') ? undefined : snapshot.val()

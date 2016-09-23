@@ -201,7 +201,7 @@ var watchEvent = exports.watchEvent = function watchEvent(firebase, dispatch, ev
 
   var runQuery = function runQuery(q, e, p) {
     if (e === 'once') {
-      q.once().then(function (snapshot) {
+      q.once('value').then(function (snapshot) {
         return dispatch({ type: _constants.SET, path: path, data: snapshot.val() });
       });
     } else {
