@@ -14,6 +14,9 @@ const flatMap = arr => (arr && arr.length) ? arr.reduce((a, b) => a.concat(b)) :
 const createEvents = ({type, path}) => {
   switch (type) {
 
+    case 'once':
+      return [{name: 'once', path}]
+
     case 'value':
       return [{name: 'value', path}]
 
@@ -50,6 +53,9 @@ const getEventsFromDefinition = def => flatMap(def.map(path => {
 
       case 'array':
         return createEvents(transformEvent({ type: 'all', path: path.path }))
+
+      default:
+        return createEvents(transformEvent({ type: path.type, path: path.path }))
     }
   }
 

@@ -207,13 +207,18 @@ export const watchEvent = (firebase, dispatch, event, path, dest, onlyLastEvent 
       dispatch({
         type: SET,
         path: resultPath,
-        data,
-        snapshot
+        data
       })
     })
   }
 
   runQuery(query, event, path)
+}
+
+export const fetchOnce = (firebase, dispatch, path) => {
+  firebase.database()
+    .ref(path).once()
+    .then(snapshot => dispatch({ type: SET, path, data: snapshot.val()}))
 }
 
 /**
@@ -232,7 +237,8 @@ export const unWatchEvent = (firebase, event, path, queryId = undefined) =>
  * @param {Array} events - List of events for which to add watchers
  */
 export const watchEvents = (firebase, dispatch, events) =>
-    events.forEach(event => watchEvent(firebase, dispatch, event.name, event.path))
+    events.forEach(event => event.name === 'once' ? fetchOnce(firebase, dispatch, event.path) :
+        watchEvent(firebase, dispatch, event.name, event.path))
 
 /**
  * @description Remove watchers from a list of events
