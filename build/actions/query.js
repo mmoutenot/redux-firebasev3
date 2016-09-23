@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.unWatchEvents = exports.watchEvents = exports.unWatchEvent = exports.fetchOnce = exports.watchEvent = undefined;
+exports.unWatchEvents = exports.watchEvents = exports.unWatchEvent = exports.watchEvent = undefined;
 
 var _constants = require('../constants');
 
@@ -200,30 +200,30 @@ var watchEvent = exports.watchEvent = function watchEvent(firebase, dispatch, ev
   }
 
   var runQuery = function runQuery(q, e, p) {
-    q.on(e, function (snapshot) {
-      var data = e === 'child_removed' ? undefined : snapshot.val();
-      var resultPath = dest || e === 'value' ? p : p + '/' + snapshot.key;
-      if (dest && e !== 'child_removed') {
-        data = {
-          _id: snapshot.key,
-          val: snapshot.val()
-        };
-      }
-      dispatch({
-        type: _constants.SET,
-        path: resultPath,
-        data: data
+    if (e === 'once') {
+      q.once().then(function (snapshot) {
+        return dispatch({ type: _constants.SET, path: path, data: snapshot.val() });
       });
-    });
+    } else {
+      q.on(e, function (snapshot) {
+        var data = e === 'child_removed' ? undefined : snapshot.val();
+        var resultPath = dest || e === 'value' ? p : p + '/' + snapshot.key;
+        if (dest && e !== 'child_removed') {
+          data = {
+            _id: snapshot.key,
+            val: snapshot.val()
+          };
+        }
+        dispatch({
+          type: _constants.SET,
+          path: resultPath,
+          data: data
+        });
+      });
+    }
   };
 
   runQuery(query, event, path);
-};
-
-var fetchOnce = exports.fetchOnce = function fetchOnce(firebase, dispatch, path) {
-  firebase.database().ref(path).once().then(function (snapshot) {
-    return dispatch({ type: _constants.SET, path: path, data: snapshot.val() });
-  });
 };
 
 /**
@@ -245,7 +245,7 @@ var unWatchEvent = exports.unWatchEvent = function unWatchEvent(firebase, event,
  */
 var watchEvents = exports.watchEvents = function watchEvents(firebase, dispatch, events) {
   return events.forEach(function (event) {
-    return event.name === 'once' ? fetchOnce(firebase, dispatch, event.path) : watchEvent(firebase, dispatch, event.name, event.path);
+    return watchEvent(firebase, dispatch, event.name, event.path);
   });
 };
 

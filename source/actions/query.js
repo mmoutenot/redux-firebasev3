@@ -195,30 +195,28 @@ export const watchEvent = (firebase, dispatch, event, path, dest, onlyLastEvent 
   }
 
   const runQuery = (q, e, p) => {
-    q.on(e, snapshot => {
-      let data = (e === 'child_removed') ? undefined : snapshot.val()
-      const resultPath = dest || (e === 'value') ? p : p + '/' + snapshot.key
-      if (dest && e !== 'child_removed') {
-        data = {
-          _id: snapshot.key,
-          val: snapshot.val()
+    if (e === 'once') {
+      q.once().then(snapshot => dispatch({ type: SET, path, data: snapshot.val()}))
+    } else {
+      q.on(e, snapshot => {
+        let data = (e === 'child_removed') ? undefined : snapshot.val()
+        const resultPath = dest || (e === 'value') ? p : p + '/' + snapshot.key
+        if (dest && e !== 'child_removed') {
+          data = {
+            _id: snapshot.key,
+            val: snapshot.val()
+          }
         }
-      }
-      dispatch({
-        type: SET,
-        path: resultPath,
-        data
+        dispatch({
+          type: SET,
+          path: resultPath,
+          data
+        })
       })
-    })
+    }
   }
 
   runQuery(query, event, path)
-}
-
-export const fetchOnce = (firebase, dispatch, path) => {
-  firebase.database()
-    .ref(path).once()
-    .then(snapshot => dispatch({ type: SET, path, data: snapshot.val()}))
 }
 
 /**
@@ -237,8 +235,7 @@ export const unWatchEvent = (firebase, event, path, queryId = undefined) =>
  * @param {Array} events - List of events for which to add watchers
  */
 export const watchEvents = (firebase, dispatch, events) =>
-    events.forEach(event => event.name === 'once' ? fetchOnce(firebase, dispatch, event.path) :
-        watchEvent(firebase, dispatch, event.name, event.path))
+    events.forEach(event => watchEvent(firebase, dispatch, event.name, event.path))
 
 /**
  * @description Remove watchers from a list of events
