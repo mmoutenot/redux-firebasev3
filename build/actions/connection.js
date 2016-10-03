@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
  * @description Remove listener from user profile
  * @param {Object} firebase - Internal firebase object
  */
-var unWatchConnection = function unWatchConnection(firebase) {
+var unWatchConnection = exports.unWatchConnection = function unWatchConnection(firebase) {
   if (firebase._.connectionWatch) {
     firebase.database().ref(".info/connected").off('value', firebase._.connectionWatch);
     firebase._.connectionWatch = null;
@@ -19,7 +19,7 @@ var unWatchConnection = function unWatchConnection(firebase) {
  * @param {Function} dispatch - Action dispatch function
  * @param {Object} firebase - Internal firebase object
  */
-var watchConnection = function watchConnection(dispatch, firebase) {
+var watchConnection = exports.watchConnection = function watchConnection(dispatch, firebase) {
   unWatchConnection(firebase);
   firebase._.connectionWatch = firebase.database().ref(".info/connected").on('value', function (snap) {
     dispatch({
