@@ -6,6 +6,7 @@ module.exports = {
   START: prefix + 'START',
   SET: prefix + 'SET',
   SET_PROFILE: prefix + 'SET_PROFILE',
+  SET_CONNECTED: prefix + 'SET_CONNECTED',
   LOGIN: prefix + 'LOGIN',
   LOGOUT: prefix + 'LOGOUT',
   LOGIN_ERROR: prefix + 'LOGIN_ERROR',

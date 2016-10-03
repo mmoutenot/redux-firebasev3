@@ -17,7 +17,7 @@ const unWatchConnection = (firebase) => {
 const watchConnection = (dispatch, firebase) => {
   unWatchConnection(firebase)
   firebase._.connectionWatch = firebase.database()
-    .ref(".info/connected");
+    .ref(".info/connected")
     .on('value', snap => {
       dispatch({
         type: SET_CONNECTED,

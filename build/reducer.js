@@ -50,6 +50,11 @@ exports.default = function () {
       retVal = state.setIn(['data'].concat(_toConsumableArray(pathArr)), (0, _immutable.fromJS)({}));
       return retVal;
 
+    case _constants.SET_CONNECTED:
+      var isConnected = action.isConnected;
+
+      state.setIn(['isConnected'], isConnected);
+
     case _constants.SET_PROFILE:
       var profile = action.profile;
 

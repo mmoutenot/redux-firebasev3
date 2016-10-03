@@ -127,6 +127,7 @@ exports.default = function (config, otherConfig) {
       };
 
       _actions.authActions.init(dispatch, firebase);
+      _actions.connectionActions.watchConnection(dispatch, firebase);
 
       store.firebase = firebase;
 

@@ -3,11 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.queryActions = exports.authActions = undefined;
+exports.connectionActions = exports.queryActions = exports.authActions = undefined;
 
 var _auth = require('./auth');
 
 var authActions = _interopRequireWildcard(_auth);
+
+var _connection = require('./connection');
+
+var connectionActions = _interopRequireWildcard(_connection);
 
 var _query = require('./query');
 
@@ -17,4 +21,5 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 exports.authActions = authActions;
 exports.queryActions = queryActions;
-exports.default = Object.assign({}, authActions, queryActions);
+exports.connectionActions = connectionActions;
+exports.default = Object.assign({}, authActions, queryActions, connectionActions);
