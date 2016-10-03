@@ -1,8 +1,12 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.watchConnection = exports.unWatchConnection = undefined;
+
+var _constants = require('../constants');
+
 /**
  * @description Remove listener from user profile
  * @param {Object} firebase - Internal firebase object
@@ -23,7 +27,7 @@ var watchConnection = exports.watchConnection = function watchConnection(dispatc
   unWatchConnection(firebase);
   firebase._.connectionWatch = firebase.database().ref(".info/connected").on('value', function (snap) {
     dispatch({
-      type: SET_CONNECTED,
+      type: _constants.SET_CONNECTED,
       isConnected: snap.val()
     });
   });

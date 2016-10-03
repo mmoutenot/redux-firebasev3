@@ -1,3 +1,5 @@
+import {SET_CONNECTED} from '../constants';
+
 /**
  * @description Remove listener from user profile
  * @param {Object} firebase - Internal firebase object
