@@ -1,5 +1,5 @@
 import Firebase from 'firebase'
-import { authActions, queryActions } from './actions'
+import { authActions, queryActions, connectionActions } from './actions'
 
 export default (config, otherConfig) =>
   next => (reducer, initialState) => {
@@ -102,6 +102,7 @@ export default (config, otherConfig) =>
     }
 
     authActions.init(dispatch, firebase)
+    connectionActions.watchConnection(dispatch, firebase);
 
     store.firebase = firebase
 

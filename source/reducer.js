@@ -2,6 +2,7 @@ import {fromJS} from 'immutable'
 import {
   SET,
   SET_PROFILE,
+  SET_CONNECTED,
   LOGIN,
   LOGOUT,
   LOGIN_ERROR,
@@ -44,6 +45,10 @@ export default (state = initialState, action = {}) => {
       pathArr = pathToArr(path)
       retVal = state.setIn(['data', ...pathArr], fromJS({}))
       return retVal
+
+    case SET_CONNECTED:
+      const {isConnected} = action;
+      state.setIn(['isConnected'], isConnected)
 
     case SET_PROFILE:
       const {profile} = action
