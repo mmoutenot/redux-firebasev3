@@ -25,3 +25,5 @@ const watchConnection = (dispatch, firebase) => {
       })
     })
 }
+
+export default { watchConnection, unWatchConnection }
