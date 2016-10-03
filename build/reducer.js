@@ -53,7 +53,7 @@ exports.default = function () {
     case _constants.SET_CONNECTED:
       var isConnected = action.isConnected;
 
-      state.setIn(['isConnected'], isConnected);
+      return state.setIn(['isConnected'], isConnected);
 
     case _constants.SET_PROFILE:
       var profile = action.profile;

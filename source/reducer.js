@@ -48,7 +48,7 @@ export default (state = initialState, action = {}) => {
 
     case SET_CONNECTED:
       const {isConnected} = action;
-      state.setIn(['isConnected'], isConnected)
+      return state.setIn(['isConnected'], isConnected)
 
     case SET_PROFILE:
       const {profile} = action
