@@ -1,5 +1,8 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @description Remove listener from user profile
  * @param {Object} firebase - Internal firebase object
@@ -25,3 +28,5 @@ var watchConnection = function watchConnection(dispatch, firebase) {
     });
   });
 };
+
+exports.default = { watchConnection: watchConnection, unWatchConnection: unWatchConnection };
