@@ -106,9 +106,9 @@ exports.default = function (config, otherConfig) {
       };
 
       var createUser = function createUser(credentials, profile) {
-        return _actions.authActions.createUser(dispatch, firebase, credentials, profile);
+        _actions.authActions.createUser(dispatch, firebase, credentials, profile);
+        _actions.connectionActions.watchConnection(dispatch, firebase);
       };
-      _actions.connectionActions.watchConnection(dispatch, firebase);
 
       var resetPassword = function resetPassword(credentials) {
         return _actions.authActions.resetPassword(dispatch, firebase, credentials);
