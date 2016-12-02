@@ -114,6 +114,10 @@ exports.default = function (config, otherConfig) {
         return _actions.authActions.resetPassword(dispatch, firebase, credentials);
       };
 
+      var reloadUser = function reloadUser() {
+        return _actions.authActions.reloadUser(dispatch, firebase);
+      };
+
       firebase.helpers = {
         set: set,
         uniqueSet: uniqueSet,
@@ -124,6 +128,7 @@ exports.default = function (config, otherConfig) {
         logout: logout,
         createUser: createUser,
         resetPassword: resetPassword,
+        reloadUser: reloadUser,
         watchEvent: watchEvent,
         unWatchEvent: unWatchEvent
       };

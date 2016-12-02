@@ -91,6 +91,9 @@ export default (config, otherConfig) =>
     const resetPassword = (credentials) =>
       authActions.resetPassword(dispatch, firebase, credentials)
 
+    const reloadUser = () =>
+      authActions.reloadUser(dispatch, firebase)
+
     firebase.helpers = {
       set,
       uniqueSet,
@@ -101,6 +104,7 @@ export default (config, otherConfig) =>
       logout,
       createUser,
       resetPassword,
+      reloadUser,
       watchEvent,
       unWatchEvent
     }

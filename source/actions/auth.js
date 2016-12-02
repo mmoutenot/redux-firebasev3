@@ -237,6 +237,14 @@ export const login = (dispatch, firebase, credentials) => {
     })
 }
 
+export const reloadUser = (dispatch, firebase) => {
+  const currentUser = firebase.auth().currentUser;
+  if (currentUser) {
+    currentUser.reload();
+    dispatchLogin(dispatch, currentUser);
+  }
+}
+
 /**
  * @description Logout of firebase and dispatch logout event
  * @param {Function} dispatch - Action dispatch function
