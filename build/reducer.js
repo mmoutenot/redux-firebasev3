@@ -73,7 +73,7 @@ exports.default = function () {
       });
 
     case _constants.LOGIN:
-      return state.setIn(['auth'], (0, _immutable.fromJS)(action.auth)).setIn(['authError'], null).setIn(['isEmailVerified'], action.auth.isEmailVerified);
+      return state.setIn(['auth'], (0, _immutable.fromJS)(action.auth)).setIn(['authError'], null).setIn(['isEmailVerified'], action.auth.emailVerified);
 
     case 'auth/set-is-email-verified':
       return state.setIn(['isEmailVerified'], action.isEmailVerified);

@@ -70,17 +70,17 @@ export default (state = initialState, action = {}) => {
 
     case LOGIN:
       return state.setIn(['auth'], fromJS(action.auth))
-                  .setIn(['authError'], null)
-                  .setIn(['isEmailVerified'], action.auth.isEmailVerified)
+        .setIn(['authError'], null)
+        .setIn(['isEmailVerified'], action.auth.emailVerified)
 
     case 'auth/set-is-email-verified':
       return state.setIn(['isEmailVerified'], action.isEmailVerified)
 
     case LOGIN_ERROR:
       return state
-              .setIn(['authError'], action.authError)
-              .setIn(['auth'], null)
-              .setIn(['profile'], null)
+        .setIn(['authError'], action.authError)
+        .setIn(['auth'], null)
+        .setIn(['profile'], null)
 
     case AUTHENTICATION_INIT_STARTED:
       return initialState.setIn(['isInitializing'], true)
