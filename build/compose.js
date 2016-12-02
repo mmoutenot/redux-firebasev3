@@ -114,8 +114,8 @@ exports.default = function (config, otherConfig) {
         return _actions.authActions.resetPassword(dispatch, firebase, credentials);
       };
 
-      var reloadUser = function reloadUser() {
-        return _actions.authActions.reloadUser(dispatch, firebase);
+      var getIsEmailVerified = function getIsEmailVerified() {
+        return _actions.authActions.getIsEmailVerified(dispatch, firebase);
       };
 
       firebase.helpers = {
@@ -128,7 +128,7 @@ exports.default = function (config, otherConfig) {
         logout: logout,
         createUser: createUser,
         resetPassword: resetPassword,
-        reloadUser: reloadUser,
+        getIsEmailVerified: getIsEmailVerified,
         watchEvent: watchEvent,
         unWatchEvent: unWatchEvent
       };

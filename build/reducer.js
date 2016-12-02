@@ -16,6 +16,7 @@ var emptyState = {
   profile: undefined,
   isConnected: undefined,
   isInitializing: undefined,
+  isEmailVerified: undefined,
   data: {}
 };
 
@@ -66,12 +67,16 @@ exports.default = function () {
         auth: null,
         authError: null,
         profile: null,
+        isEmailVerified: null,
         isLoading: false,
         data: {}
       });
 
     case _constants.LOGIN:
-      return state.setIn(['auth'], (0, _immutable.fromJS)(action.auth)).setIn(['authError'], null);
+      return state.setIn(['auth'], (0, _immutable.fromJS)(action.auth)).setIn(['authError'], null).setIn(['isEmailVerified'], action.auth.isEmailVerified);
+
+    case 'auth/set-is-email-verified':
+      return state.setIn(['isEmailVerified'], action.isEmailVerified);
 
     case _constants.LOGIN_ERROR:
       return state.setIn(['authError'], action.authError).setIn(['auth'], null).setIn(['profile'], null);

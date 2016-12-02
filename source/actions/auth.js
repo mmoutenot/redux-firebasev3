@@ -237,11 +237,12 @@ export const login = (dispatch, firebase, credentials) => {
     })
 }
 
-export const reloadUser = (dispatch, firebase) => {
-  const currentUser = firebase.auth().currentUser;
-  if (currentUser) {
-    currentUser.reload();
-  }
+export const getIsEmailVerified = (dispatch, firebase) => {
+  currentUser.reload();
+  dispatch({
+    type: 'auth/is-email-verified',
+    isEmailVerified: currentUser.isEmailVerified,
+  });
 }
 
 /**

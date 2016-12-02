@@ -18,6 +18,7 @@ const emptyState = {
   profile: undefined,
   isConnected: undefined,
   isInitializing: undefined,
+  isEmailVerified: undefined,
   data: {}
 }
 
@@ -62,6 +63,7 @@ export default (state = initialState, action = {}) => {
         auth: null,
         authError: null,
         profile: null,
+        isEmailVerified: null,
         isLoading: false,
         data: {}
       })
@@ -69,6 +71,10 @@ export default (state = initialState, action = {}) => {
     case LOGIN:
       return state.setIn(['auth'], fromJS(action.auth))
                   .setIn(['authError'], null)
+                  .setIn(['isEmailVerified'], action.auth.isEmailVerified)
+
+    case 'auth/set-is-email-verified':
+      return state.setIn(['isEmailVerified'], action.isEmailVerified)
 
     case LOGIN_ERROR:
       return state

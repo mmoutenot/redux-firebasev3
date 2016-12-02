@@ -91,8 +91,8 @@ export default (config, otherConfig) =>
     const resetPassword = (credentials) =>
       authActions.resetPassword(dispatch, firebase, credentials)
 
-    const reloadUser = () =>
-      authActions.reloadUser(dispatch, firebase)
+    const getIsEmailVerified = () =>
+      authActions.getIsEmailVerified(dispatch, firebase)
 
     firebase.helpers = {
       set,
@@ -104,7 +104,7 @@ export default (config, otherConfig) =>
       logout,
       createUser,
       resetPassword,
-      reloadUser,
+      getIsEmailVerified,
       watchEvent,
       unWatchEvent
     }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.resetPassword = exports.createUser = exports.logout = exports.reloadUser = exports.login = exports.createUserProfile = exports.init = undefined;
+exports.resetPassword = exports.createUser = exports.logout = exports.getIsEmailVerified = exports.login = exports.createUserProfile = exports.init = undefined;
 
 var _constants = require('../constants');
 
@@ -232,12 +232,12 @@ var login = exports.login = function login(dispatch, firebase, credentials) {
   });
 };
 
-var reloadUser = exports.reloadUser = function reloadUser(dispatch, firebase) {
-  var currentUser = firebase.auth().currentUser;
-  if (currentUser) {
-    currentUser.reload();
-    dispatchLogin(dispatch, currentUser);
-  }
+var getIsEmailVerified = exports.getIsEmailVerified = function getIsEmailVerified(dispatch, firebase) {
+  currentUser.reload();
+  dispatch({
+    type: 'auth/is-email-verified',
+    isEmailVerified: currentUser.isEmailVerified
+  });
 };
 
 /**
