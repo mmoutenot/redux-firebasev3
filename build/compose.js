@@ -103,7 +103,6 @@ exports.default = function (config, otherConfig) {
 
       var logout = function logout() {
         _actions.authActions.logout(dispatch, firebase);
-        _actions.connectionActions.unWatchConnection(firebase);
       };
 
       var createUser = function createUser(credentials, profile) {

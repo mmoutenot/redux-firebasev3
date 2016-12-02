@@ -82,7 +82,6 @@ export default (config, otherConfig) =>
 
     const logout = () => {
       authActions.logout(dispatch, firebase)
-      connectionActions.unWatchConnection(firebase);
     }
 
     const createUser = (credentials, profile) =>
