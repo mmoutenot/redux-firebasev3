@@ -235,6 +235,7 @@ var login = exports.login = function login(dispatch, firebase, credentials) {
 var reloadUser = exports.reloadUser = function reloadUser(dispatch, firebase) {
   var currentUser = firebase.auth().currentUser;
   if (currentUser) {
+    logout(dispatch, firebase);
     currentUser.reload();
     dispatchLogin(dispatch, currentUser);
   }
