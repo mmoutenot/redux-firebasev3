@@ -77,9 +77,11 @@ export default (config, otherConfig) =>
 
     const login = credentials =>
       authActions.login(dispatch, firebase, credentials)
+      connectionActions.watchConnection(dispatch, firebase);
 
     const logout = () =>
       authActions.logout(dispatch, firebase)
+      connectionActions.unWatchConnection(firebase);
 
     const createUser = (credentials, profile) =>
       authActions.createUser(dispatch, firebase, credentials, profile)

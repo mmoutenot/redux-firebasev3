@@ -16,6 +16,7 @@ const emptyState = {
   auth: undefined,
   authError: undefined,
   profile: undefined,
+  isConnected: undefined,
   isInitializing: undefined,
   data: {}
 }

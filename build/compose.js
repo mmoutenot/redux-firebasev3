@@ -99,10 +99,12 @@ exports.default = function (config, otherConfig) {
       var login = function login(credentials) {
         return _actions.authActions.login(dispatch, firebase, credentials);
       };
+      _actions.connectionActions.watchConnection(dispatch, firebase);
 
       var logout = function logout() {
         return _actions.authActions.logout(dispatch, firebase);
       };
+      _actions.connectionActions.unWatchConnection(firebase);
 
       var createUser = function createUser(credentials, profile) {
         return _actions.authActions.createUser(dispatch, firebase, credentials, profile);
