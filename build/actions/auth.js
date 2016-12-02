@@ -233,9 +233,10 @@ var login = exports.login = function login(dispatch, firebase, credentials) {
 };
 
 var getIsEmailVerified = exports.getIsEmailVerified = function getIsEmailVerified(dispatch, firebase) {
+  var currentUser = firebase.auth().currentUser;
   currentUser.reload();
   dispatch({
-    type: 'auth/is-email-verified',
+    type: 'auth/set-is-email-verified',
     isEmailVerified: currentUser.isEmailVerified
   });
 };

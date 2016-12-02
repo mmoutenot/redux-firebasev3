@@ -238,9 +238,10 @@ export const login = (dispatch, firebase, credentials) => {
 }
 
 export const getIsEmailVerified = (dispatch, firebase) => {
+  const currentUser = firebase.auth().currentUser;
   currentUser.reload();
   dispatch({
-    type: 'auth/is-email-verified',
+    type: 'auth/set-is-email-verified',
     isEmailVerified: currentUser.isEmailVerified,
   });
 }
