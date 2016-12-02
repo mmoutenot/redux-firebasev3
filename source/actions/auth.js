@@ -242,7 +242,7 @@ export const getIsEmailVerified = (dispatch, firebase) => {
   currentUser.reload();
   dispatch({
     type: 'auth/set-is-email-verified',
-    isEmailVerified: currentUser.isEmailVerified,
+    isEmailVerified: currentUser.emailVerified,
   });
 }
 

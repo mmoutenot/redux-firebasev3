@@ -237,7 +237,7 @@ var getIsEmailVerified = exports.getIsEmailVerified = function getIsEmailVerifie
   currentUser.reload();
   dispatch({
     type: 'auth/set-is-email-verified',
-    isEmailVerified: currentUser.isEmailVerified
+    isEmailVerified: currentUser.emailVerified
   });
 };
 
