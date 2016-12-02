@@ -240,9 +240,7 @@ export const login = (dispatch, firebase, credentials) => {
 export const reloadUser = (dispatch, firebase) => {
   const currentUser = firebase.auth().currentUser;
   if (currentUser) {
-    logout(dispatch, firebase);
     currentUser.reload();
-    dispatchLogin(dispatch, currentUser);
   }
 }
 
