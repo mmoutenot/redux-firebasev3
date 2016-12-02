@@ -84,9 +84,10 @@ export default (config, otherConfig) =>
       authActions.logout(dispatch, firebase)
     }
 
-    const createUser = (credentials, profile) =>
+    const createUser = (credentials, profile) => {
       authActions.createUser(dispatch, firebase, credentials, profile)
       connectionActions.watchConnection(dispatch, firebase);
+    }
 
     const resetPassword = (credentials) =>
       authActions.resetPassword(dispatch, firebase, credentials)
