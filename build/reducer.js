@@ -69,6 +69,7 @@ exports.default = function () {
         profile: null,
         isEmailVerified: null,
         isLoading: false,
+        isConnected: state.get('isConnected'),
         data: {}
       });
 
