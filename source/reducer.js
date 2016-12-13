@@ -65,7 +65,8 @@ export default (state = initialState, action = {}) => {
         profile: null,
         isEmailVerified: null,
         isLoading: false,
-        isConnected: state.get('isConnected')
+        isConnected: state.get('isConnected'),
+        data: state.get('data'),
       })
 
     case LOGIN:
