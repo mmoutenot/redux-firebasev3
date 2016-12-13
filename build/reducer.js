@@ -69,8 +69,7 @@ exports.default = function () {
         profile: null,
         isEmailVerified: null,
         isLoading: false,
-        isConnected: state.get('isConnected'),
-        data: {}
+        isConnected: state.get('isConnected')
       });
 
     case _constants.LOGIN:
